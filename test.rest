@@ -1,0 +1,25 @@
+DELETE http://localhost:3000/
+
+###
+PATCH  http://localhost:3000/hello/world
+Content-Type: application/json
+
+{
+    "hello": "world"
+}
+
+###
+
+POST http://localhost:3000/hello/world
+Content-Type: application/x-www-form-urlencoded
+
+mandantId=mandantId
+&clientId=clientId
+
+###
+
+GET http://localhost:3000/hello/world
+Content-Type: application/x-www-form-urlencoded
+
+mandantId=mandantId
+&clientId=clientId

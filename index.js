@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const merge = require('lodash.merge');
 
 // non persistent storage for mock data
 var storage = {};
@@ -25,10 +26,15 @@ app.patch('*', (req, res) => {
 
 // this will send the stored json data from the storage with route as key
 app.all('*', (req, res) => {
+    path = './data'+req.url+'/response.json';
+    filedata = require(path);
     data = storage[req.url] || {};
-    res.json(data);
+    responsedata = merge({}, filedata, data);
+    res.json(responsedata);
 });
 
 
 port = process.env.PORT
-app.listen(port);
+app.listen(port, () => {
+    console.log(`server is listening on ${port}`);
+});

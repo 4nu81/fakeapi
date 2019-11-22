@@ -5,7 +5,8 @@ PATCH  http://localhost:3000/hello/world
 Content-Type: application/json
 
 {
-    "hello": "world"
+    "hello": "world",
+    "option": false
 }
 
 ###

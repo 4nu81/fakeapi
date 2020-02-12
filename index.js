@@ -11,6 +11,10 @@ app.use(express.json());
 // may be used for validation
 app.use(express.urlencoded());
 
+// read the storage completely
+app.get('/storage', (req, res) => {
+    res.json(storage);
+})
 
 // this is a route to completely wipe the storage
 app.delete('*', (req, res) => {
@@ -27,7 +31,11 @@ app.patch('*', (req, res) => {
 // this will send the stored json data from the storage with route as key
 app.all('*', (req, res) => {
     path = './data'+req.url+'/response.json';
-    filedata = require(path);
+    try {
+        filedata = require(path);
+    } catch (error) {
+        filedata = {}
+    }    
     data = storage[req.url] || {};
     responsedata = merge({}, filedata, data);
     res.json(responsedata);

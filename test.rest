@@ -1,16 +1,19 @@
 DELETE http://localhost:3000/
 
 ###
+
+# writes to /hello/world
 PATCH  http://localhost:3000/hello/world
 Content-Type: application/json
 
 {
-    "hello": "world",
+    "hello": "world 2",
     "option": false
 }
 
 ###
 
+# gets from /hello/world with content from the json file
 POST http://localhost:3000/hello/world
 Content-Type: application/x-www-form-urlencoded
 
@@ -19,8 +22,27 @@ mandantId=mandantId
 
 ###
 
-GET http://localhost:3000/hello/world
+# writes to /hell
+PATCH  http://localhost:3000/hellmuth
+Content-Type: application/json
+
+{
+    "foo": "bar",
+    "option": {
+        "radio": "bla"
+    }
+}
+
+###
+
+# reads from /hell. No content file could be found.
+GET http://localhost:3000/hell
 Content-Type: application/x-www-form-urlencoded
 
 mandantId=mandantId
 &clientId=clientId
+
+###
+
+# show complete storage without content from files
+GET http://localhost:3000/storage
